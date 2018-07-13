@@ -34,6 +34,7 @@ def handle(msg):
         if command == '/iniciar':
             os.system('python pys/pir.py &')
             bot.sendMessage(chat_id,'Iniciada la deteccion de los PIRs')
+            print('PIR: Start at ' + time.ctime() + '\n')
             
         if command == '/stop':
             os.system('pkill -9 -f pir.py &')
