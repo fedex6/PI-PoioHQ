@@ -38,11 +38,11 @@ def handle(msg):
         if command == '/stop':
             os.system('pkill -9 -f pir.py &')
             bot.sendMessage(chat_id,'Detenida la deteccion de los PIRs')
-            print('PIR: Stop.\n')
+            print('PIR: Stop at ' + time.ctime() + '\n')
 
     else:
         bot.sendMessage(chat_id,'Sal de aqui maldito bastardo !')
-        print(chat_id + ' intento usar el bot.\n')
+        print(chat_id + ' intento usar el bot. ( ' + time.ctime() + ' )\n' )
 
 bot = telepot.Bot('--TOKEN--')
 bot.message_loop(handle)
