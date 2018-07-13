@@ -17,7 +17,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.IN) #PIR1
 
 bot = telepot.Bot('--TOKEN--')
-print('\nIniciando PIRs ...\n' + time.ctime())
 
 while 1:
     try:
