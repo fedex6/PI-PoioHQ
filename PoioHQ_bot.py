@@ -23,7 +23,7 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
 
-    #if chat_id == 'chat_id from owner' :
+    #if chat_id == chat_id from owner :
     if 1:
         if command =='/roll':
             bot.sendMessage(chat_id, random.randint(1, 6))
@@ -41,6 +41,7 @@ def handle(msg):
 
     else:
         bot.sendMessage(chat_id,'Sal de aqui maldito bastardo !')
+        print(chat_id + ' intento usar el bot.\n')
 
 bot = telepot.Bot('--TOKEN--')
 bot.message_loop(handle)
@@ -49,11 +50,6 @@ print('Iniciando...')
 while 1:
     try:
         time.sleep(0.5)
-        #if GPIO.input(18):
-        #   bot.sendMessage(chat_id,GPIO.input(18))
-        #   bot.sendMessage(chat_id,"Se detecto movimiento en (1)")
-        #   time.sleep(5)
-        #time.sleep(0.1)
 
     except KeyboardInterrupt:
         print('\n Program interrupted')
