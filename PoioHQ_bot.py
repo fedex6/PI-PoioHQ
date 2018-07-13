@@ -36,7 +36,7 @@ def handle(msg):
             bot.sendMessage(chat_id,'Iniciada la deteccion de los PIRs')
             
         if command == '/stop':
-            os.system('pkill pir.py &')
+            os.system('killall pir.py &')
             bot.sendMessage(chat_id,'Detenida la deteccion de los PIRs')
 
     else:
