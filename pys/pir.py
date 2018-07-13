@@ -23,6 +23,10 @@ while 1:
     try:
 		if GPIO.input(18):
 			bot.sendMessage('chat_id from owner',"Se detecto movimiento en (1) " + time.ctime())
+			## LOG
+	        log = open("../log.txt", "a")
+	        log.write('Movimiento detectado en (1) [' + time.ctime() + ']\n')
+	        log.close()
 			time.sleep(2.9)
 		time.sleep(0.1)
 
