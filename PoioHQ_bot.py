@@ -38,6 +38,7 @@ def handle(msg):
         if command == '/stop':
             os.system('pkill -9 -f pir.py &')
             bot.sendMessage(chat_id,'Detenida la deteccion de los PIRs')
+            print('PIR: Stop.\n')
 
     else:
         bot.sendMessage(chat_id,'Sal de aqui maldito bastardo !')
