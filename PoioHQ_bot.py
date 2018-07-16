@@ -5,19 +5,15 @@
 
 #base coder TelegramBot:- Salman Faris
 
+#####################
 import os
 import sys
 import time
 import datetime
 import random
 import telepot
-import RPi.GPIO as GPIO
+#####################
 
-# to use Raspberry Pi board pin names
-GPIO.setmode(GPIO.BCM)
-
-# set up GPIO output channel
-GPIO.setup(18, GPIO.IN) #PIR1
 
 def handle(msg):
     chat_id = msg['chat']['id']

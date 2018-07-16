@@ -6,7 +6,6 @@
 import sys
 import time
 import datetime
-import random
 import telepot
 import RPi.GPIO as GPIO
 
