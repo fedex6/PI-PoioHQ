@@ -22,9 +22,9 @@ GPIO.setup(18, GPIO.IN) #PIR1
 def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
+    usuario = msg['from']['username']
 
-    #if chat_id == chat_id from owner :
-    if 1:
+    if usuario == '-- USER --' : ## para que lo usen ciertos usuarios
         if command =='/roll': ## Es solo de prueba, para ver si funciona el bot
             bot.sendMessage(chat_id, random.randint(1, 6))
 
@@ -36,7 +36,7 @@ def handle(msg):
             bot.sendMessage(chat_id,'Iniciada la deteccion de los PIRs') ## Envia un mensaje por Telegram
             ## LOG - deja registro del inicio
             log = open("log.txt", "a")
-            log.write('PIR: Start at ' + time.ctime() + '\n')
+            log.write('[ ' + time.ctime() + ' ] >>> PIR: Started by ' + usuario + '\n')
             log.close()
             
         if command == '/stop': ## Para el py de la deteccion de movimiento
@@ -44,22 +44,25 @@ def handle(msg):
             bot.sendMessage(chat_id,'Detenida la deteccion de los PIRs') ## Envia un mensaje por Telegram
             ## LOG - deja registro del "apagado" de la deteccion de movimiento
             log = open("log.txt", "a")
-            log.write('PIR: Stop at ' + time.ctime() + '\n')
+            log.write('[ ' + time.ctime() + ' ] >>> PIR: Stoped by ' + usuario + '\n')
             log.close()
+
+        if command == '/user': ## obtener el usuario
+            bot.sendMessage(chat_id, usuario)
 
     else: ## Cuando se activa el bloqueo para que solo lo use el dueno y lo intenta usar otra persona
         bot.sendMessage(chat_id,'Sal de aqui maldito bastardo !') ## Envia un mensaje por Telegram
         ## LOG - deja registro
         log = open("log.txt", "a")
-        log.write(chat_id + ' intento usar el bot. ( ' + time.ctime() + ' )\n' )
+        log.write('[ ' + time.ctime() + ' ] >>> ' + usuario + ' intento usar el bot. || ' + command + '\n' ) ## Registro de quien quiso usar el bot, y que comando envio
         log.close()
 
-bot = telepot.Bot('--TOKEN--') ## Poner el TOKEN del bot
+bot = telepot.Bot('-- TOKEN --') ## Poner el Token del bot
 bot.message_loop(handle)
 
 ##LOG - Deja registro de que se inicio el programa
 log = open("log.txt", "a")
-log.write('Iniciando... [ ' + time.ctime() + ' ]\n')
+log.write('[ ' + time.ctime() + ' ] >>> Starting...\n')
 log.close()
 
 while 1:
