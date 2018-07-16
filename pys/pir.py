@@ -24,7 +24,7 @@ while 1:
 			bot.sendMessage('chat_id from owner',"Se detecto movimiento en (1) " + time.ctime())
 			## LOG
 	        log = open("../log.txt", "a")
-	        log.write('Movimiento detectado en (1) [' + time.ctime() + ']\n')
+	        log.write('[ ' + time.ctime() + ' ] >>> Movimiento detectado en (1)\n')
 	        log.close()
 			time.sleep(2.9)
 		time.sleep(0.1)
