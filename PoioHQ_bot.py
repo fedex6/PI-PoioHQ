@@ -53,6 +53,7 @@ def handle(msg):
 
 bot = telepot.Bot('-- TOKEN --') ## Poner el Token del bot
 bot.message_loop(handle)
+chat_id_owner = '-- chat_id --' ## Poner el # de chat_id con el  usuario admin
 
 ##LOG - Deja registro de que se inicio el programa
 log = open("log.txt", "a")
@@ -62,6 +63,9 @@ log.close()
 while 1:
     try:
         time.sleep(0.5)
+        if time.strftime("%M") == 30 or time.strftime("%M") == 00: ## Todas horas y a los 30 minutos
+            if time.strftime("%S") <= 10: ## en los primeros 10 seg manda el mensaje
+                bot.sendMessage(chat_id_owner,'Estoy funciondo...') ## Envia un mensaje por Telegram
 
     except KeyboardInterrupt:
         ##LOG - Deja registro de que se freno el programa
