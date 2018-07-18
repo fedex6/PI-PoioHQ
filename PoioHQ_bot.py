@@ -64,7 +64,7 @@ while 1:
         time.sleep(0.5)
 
     except KeyboardInterrupt:
-        ##LOG - Deja registro de que se inicio el programa
+        ##LOG - Deja registro de que se freno el programa
         log = open("log.txt", "a")
         log.write('[ ' + time.ctime() + ' ] >>> Stoping...\n')
         log.close()
