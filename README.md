@@ -13,13 +13,13 @@
   pi@host ~:PoioHQ start|stop|restart
   ```
 
-- ### PoioHQ/PoioHQ_bot.py
-
-  Es el archivo principal del bot, donde los comandos se configuran.
-
 - ### PoioHQ/PoioHQ.sh
 
   Archivo que ejecuta el proceso del bot, la idea es que se ponga como "cron" o se ejecute al inicio del sistema (en caso de que se reinicie)
+
+- ### PoioHQ/PoioHQ_bot.py
+
+  Es el archivo principal del bot, donde los comandos se configuran.
 
 - ### PoioHQ/log.txt
 
