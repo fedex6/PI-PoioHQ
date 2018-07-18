@@ -1,0 +1,32 @@
+#! /bin/sh 
+ 
+PATH=/bin:/usr/bin:/sbin:/usr/sbin 
+DAEMON=/PoioHQ/PoioHQ.sh 
+PIDFILE=/var/run/PoioHQ.pid 
+ 
+test -x $DAEMON || exit 0 
+ 
+. /lib/lsb/init-functions 
+ 
+case "$1" in 
+        start) 
+                start_daemon -p $PIDFILE $DAEMON 
+        ;; 
+        stop) 
+                killproc -p $PIDFILE $DAEMON 
+                PID=`ps x | grep feed | head -1 | awk '{print $1}'` 
+                kill -9 $PID 
+        ;; 
+        force-reload|restart) 
+                $0 stop 
+                $0 start 
+        ;; 
+        status) 
+                status_of_proc -p $PODFILE $DAEMON atd && exit || exit $? 
+        ;; 
+        *) 
+                echo "Usar: /etc/init.d/atd {start|stop|restart|force-reload|status}" 
+                exit 1 
+        ;; 
+esac 
+exit 0 
