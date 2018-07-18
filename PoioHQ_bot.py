@@ -65,5 +65,4 @@ while 1:
 
     except KeyboardInterrupt:
         print('\n Program interrupted')
-        GPIO.cleanup()
         exit()
