@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/python /PoioHQ/PoioHQ_bot.py &
+/usr/bin/python /home/pi/PoioHQ/PoioHQ_bot.py &
