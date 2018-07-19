@@ -3,14 +3,20 @@
 #
 #---------------------#
 
-#####################
+## Basic imports & configuration
 import os
 import sys
 import time
 import datetime
-import random
 import telepot
-#####################
+
+## Bot data
+token       =   '-- TOKEN --'
+chat_owner  =   '-- # of chat owner --'
+name_owner  =   '-- name without @ of owner --'
+
+## Others
+import random
 
 
 def handle(msg):
@@ -21,7 +27,7 @@ def handle(msg):
     ## LOG
     log = open("log.txt", "a") ##Abrir el log al principio
 
-    if usuario == '-- USER --' : ## para que lo usen ciertos usuarios
+    if usuario == name_owner : ## para que lo usen ciertos usuarios
         ## Comandos declarados en el bot
         if command == '/iniciar': ## Inicia la deteccion de movimiento
             os.system('python pys/pir.py &')
@@ -41,9 +47,6 @@ def handle(msg):
         if command == '/id': ## Devuelve el numero de id del chat, para luego configurar para que solo lo use el dueno [probar otros metodos]
             bot.sendMessage(chat_id, chat_id)
 
-        if command == '/user': ## obtener el usuario
-            bot.sendMessage(chat_id, usuario)
-
     else: ## Cuando se activa el bloqueo para que solo lo use el dueno y lo intenta usar otra persona
         bot.sendMessage(chat_id,'Sal de aqui maldito bastardo !') ## Envia un mensaje por Telegram
         log.write('[ ' + time.ctime() + ' ] >>> ' + usuario + ' intento usar el bot. || ' + command + '\n' ) ## Registro de quien quiso usar el bot, y que comando envio
@@ -51,7 +54,7 @@ def handle(msg):
     ## LOG
     log.close() ## Cierra el archivo de log
 
-bot = telepot.Bot('-- TOKEN --') ## Poner el Token del bot
+bot = telepot.Bot(token)
 bot.message_loop(handle)
 
 ##LOG - Deja registro de que se inicio el programa
