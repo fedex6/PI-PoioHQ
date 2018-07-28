@@ -18,6 +18,9 @@ name_owner  =   '-- name without @ of owner --'
 ## Others
 import random
 
+## Iniciar los Leds de indicacion
+os.system('python pys/leds.py &')
+
 
 def handle(msg):
     chat_id = msg['chat']['id']
