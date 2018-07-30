@@ -1,5 +1,5 @@
-#	
-#	PoioHQ : PIRs
+#   
+#   PoioHQ : Leds
 #---------------------#
 
 ## Basic imports
@@ -7,7 +7,6 @@ import os
 import sys
 import time
 import datetime
-import telepot
 
 ## Others
 import RPi.GPIO as GPIO
@@ -37,14 +36,14 @@ while 1:
     try:
         ## PIRs
         if GPIO.input(18): ## Se detecto movimiento
-            print('movimiento cuarto')
+            #print('movimiento cuarto')
             GPIO.output(4, True)
             time.sleep(1)
         else:
             GPIO.output(4, False)
         
         if GPIO.input(5):
-            print('Movimiento Comedor')
+            #print('Movimiento Comedor')
             GPIO.output(17, True)
             time.sleep(1)
         else:
@@ -52,7 +51,7 @@ while 1:
 
         ## Ventana
         if GPIO.input(23): ## Esta la ventana abierta
-            print('Ventana Abierta')
+            #print('Ventana Abierta')
             GPIO.output(22, True)
         else:
             GPIO.output(22, False)

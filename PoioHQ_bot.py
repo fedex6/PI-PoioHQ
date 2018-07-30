@@ -18,9 +18,8 @@ name_owner  =   '-- name without @ of owner --'
 ## Others
 import random
 
-## Iniciar los Leds de indicacion
+## Iniciar los  indicadores leds
 os.system('python pys/leds.py &')
-
 
 def handle(msg):
     chat_id = msg['chat']['id']
@@ -30,17 +29,31 @@ def handle(msg):
     ## LOG
     log = open("log.txt", "a") ##Abrir el log al principio
 
-    if usuario == name_owner : ## para que lo usen ciertos usuarios
+    if usuario == name_owner : ## para que lo usen ciertos usuarios (configuracion.py)
         ## Comandos declarados en el bot
         if command == '/iniciar': ## Inicia la deteccion de movimiento
-            os.system('python pys/pir.py &')
-            bot.sendMessage(chat_id,'Iniciada la deteccion de los PIRs') ## Envia un mensaje por Telegram
-            log.write('[ ' + time.ctime() + ' ] >>> PIR: Started by ' + usuario + '\n') ## Log
+            os.system('python pys/pir.py &') ## Inicia los PIR
+            os.system('python pys/puertas.py &') ## Inicia las detecciones de puertas abiertas
+            bot.sendMessage(chat_id,'Iniciada la deteccion de los PIRs y Puertas abiertas') ## Envia un mensaje por Telegram
+            log.write('[ ' + time.ctime() + ' ] >>> PIR & Puertas: Started by ' + usuario + '\n') ## Log
             
         if command == '/stop': ## Para el py de la deteccion de movimiento
             os.system('pkill -9 -f pir.py &') ## este comando hay que revisarlo
-            bot.sendMessage(chat_id,'Detenida la deteccion de los PIRs') ## Envia un mensaje por Telegram            
-            log.write('[ ' + time.ctime() + ' ] >>> PIR: Stoped by ' + usuario + '\n') ## Log
+            os.system('pkill -9 -f puertas.py &') ## Finaliza la deteccion de puertas abiertas
+            bot.sendMessage(chat_id,'Detenida la deteccion de los PIRs y Puertas abiertas') ## Envia un mensaje por Telegram            
+            log.write('[ ' + time.ctime() + ' ] >>> PIR & Puertas: Stoped by ' + usuario + '\n') ## Log
+        
+        ## Encender los leds
+        if command == '/leds_on':
+            os.system('python pys/leds.py &')
+            bot.sendMessage(chat_id, 'Encendidos los Leds')
+            log.write('[ ' + time.ctime() + ' ] >>> Leds: Encendidos por ' + usuario + '\n') ## Escribe el log de que se encendieron los leds
+
+        ## Apagar los leds
+        if command == '/leds_off':
+            os.system('pkill -9 -f leds.py &')
+            bot.sendMessage(chat_id, 'Se apagaron los Leds')
+            log.write('[ ' + time.ctime() + ' ] >>>Leds: Apagados por ' + usuario + '\n') ## Escribe el log de que se apagaron los leds
 
         ## Comandos varios 
         if command =='/roll': ## Es solo de prueba, para ver si funciona el bot
@@ -57,7 +70,7 @@ def handle(msg):
     ## LOG
     log.close() ## Cierra el archivo de log
 
-bot = telepot.Bot(token)
+bot = telepot.Bot(token) ## Poner el Token del bot en configuracion.py
 bot.message_loop(handle)
 
 ##LOG - Deja registro de que se inicio el programa
