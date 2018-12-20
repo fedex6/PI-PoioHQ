@@ -7,6 +7,8 @@
 import os
 import sys
 import time
+import requests
+import json
 import datetime
 import telepot
 
@@ -62,6 +64,13 @@ def handle(msg):
         ## Comandos para Conocer chat_id y username para bloquear apps a 3ros
         if command == '/id': ## Devuelve el numero de id del chat, para luego configurar para que solo lo use el dueno [probar otros metodos]
             bot.sendMessage(chat_id, chat_id)
+
+        ## Comandos para Conocer el IP donde se encuentra el bot, 
+        if command == '/ip': ## Devuelve el numero de IP solo al owner_id 
+            get_ip  = requests.get(u'https://ifconfig.co/json')
+            ip      = get_ip.json()['ip']
+            bot.sendMessage(owner_id, ip)
+            log.write('[ ' + time.ctime() + ' ] >>> ' + usuario + ' quiso conocer el IP\n') ## Log
 
     else: ## Cuando se activa el bloqueo para que solo lo use el dueno y lo intenta usar otra persona
         bot.sendMessage(chat_id,'Sal de aqui maldito bastardo !') ## Envia un mensaje por Telegram
