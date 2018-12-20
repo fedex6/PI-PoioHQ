@@ -14,7 +14,7 @@ import telepot
 
 ## Bot data
 token       =   '-- TOKEN --'
-chat_owner  =   '-- # of chat owner --'
+chat_owner  =   '-- # of bot owner --'
 name_owner  =   '-- name without @ of owner --'
 
 ## Others
