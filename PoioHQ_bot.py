@@ -69,7 +69,7 @@ def handle(msg):
         if command == '/ip': ## Devuelve el numero de IP solo al owner_id 
             get_ip  = requests.get(u'https://ifconfig.co/json')
             ip      = get_ip.json()['ip']
-            bot.sendMessage(owner_id, ip)
+            bot.sendMessage(chat_owner, ip)
             log.write('[ ' + time.ctime() + ' ] >>> ' + usuario + ' quiso conocer el IP\n') ## Log
 
     else: ## Cuando se activa el bloqueo para que solo lo use el dueno y lo intenta usar otra persona
